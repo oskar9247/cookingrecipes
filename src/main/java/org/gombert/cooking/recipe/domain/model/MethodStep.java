@@ -1,13 +1,22 @@
 package org.gombert.cooking.recipe.domain.model;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import org.gombert.cooking.recipe.domain.model.exception.RecipeCreationException;
 
 @Getter(AccessLevel.MODULE)
-@Setter(AccessLevel.PRIVATE)
 @EqualsAndHashCode
-@RequiredArgsConstructor
-public class MethodStep
+class MethodStep extends BaseEntity
 {
-    @NonNull
-    private String description;
+    final private String description;
+
+    public MethodStep(final String description) throws RecipeCreationException
+    {
+        throwExecptionIfNull(description, "MethodStep description");
+        throwExceptionIfEmpty(description, "MethodStep description");
+
+        this.description = description;
+    }
+
 }

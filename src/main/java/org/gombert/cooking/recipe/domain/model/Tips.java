@@ -1,22 +1,22 @@
 package org.gombert.cooking.recipe.domain.model;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NonNull;
 
-@Getter(AccessLevel.MODULE)
-@Setter(AccessLevel.PRIVATE)
 @EqualsAndHashCode
-class Tips
+class Tips extends BaseEntity
 {
-    private String name;
+    @NonNull
+    @Getter(AccessLevel.MODULE)
+    final private String name;
 
-    public Tips(String name)
+    public Tips(final String name)
     {
-        if (name == null)
-            throw new IllegalArgumentException("Tips: name can't be null");
+        throwExecptionIfNull(name, "tips");
+        throwExceptionIfEmpty(name, "tips");
 
-        if (name.isEmpty())
-            throw new IllegalArgumentException("Tips: name can't be empty");
-
-        setName(name);
+        this.name = name;
     }
 }

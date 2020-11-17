@@ -1,18 +1,23 @@
 package org.gombert.cooking.recipe.domain.model;
 
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
+
 import java.util.UUID;
 
-import lombok.*;
-
-@AllArgsConstructor
 @ToString(callSuper = false)
-public class RecipeId
+@EqualsAndHashCode
+public class RecipeId extends BaseEntity
 {
-    @Getter
-    private UUID id = UUID.randomUUID();
+    @Getter(AccessLevel.PUBLIC)
+    final private UUID id;
 
-    RecipeId()
+    public RecipeId(final UUID id)
     {
-        this.id = UUID.randomUUID();
+        throwExecptionIfNull(id, "recipeId");
+
+        this.id = id;
     }
 }

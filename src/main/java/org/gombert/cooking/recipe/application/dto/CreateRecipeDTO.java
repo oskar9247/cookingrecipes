@@ -1,27 +1,24 @@
 package org.gombert.cooking.recipe.application.dto;
 
-import java.util.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
-import lombok.*;
-import org.gombert.cooking.recipe.domain.model.*;
+import java.util.List;
+import java.util.UUID;
 
 @Getter(AccessLevel.PUBLIC)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class CreateRecipeDTO
 {
-    @NonNull
+    private CreateRecipeDTO(){}
+
     private UUID clientGeneratedId;
-    @NonNull
-    private TenantId tenantId;
-    @NonNull
     private String name;
-    @NonNull
     private String description;
-    @NonNull
     private String comment;
-    @NonNull
     private List<CreateRecipeIngredientDTO> recipeIngredients;
-    @NonNull
     private List<String> methodSteps;
 }

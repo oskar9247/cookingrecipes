@@ -1,22 +1,33 @@
 package org.gombert.cooking.recipe.domain.model;
 
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
+import org.gombert.cooking.recipe.domain.model.exception.RecipeCreationException;
+
 import java.util.UUID;
 
-import lombok.*;
-
-@Getter(AccessLevel.PRIVATE)
-@Setter(AccessLevel.PRIVATE)
-@EqualsAndHashCode
-public class TenantId
+@ToString(callSuper = false)
+@EqualsAndHashCode()
+public class TenantId extends BaseEntity
 {
-    @NonNull
+    @Getter(AccessLevel.PUBLIC)
     private UUID id;
 
-    public TenantId(UUID id)
+    TenantId(final String tenantId)
     {
-        if (id == null)
-            throw new IllegalArgumentException("TenantId: id can't be null");
+        throwExecptionIfNull(tenantId, "tenantId");
+        this.id = UUID.fromString(tenantId);
+    }
 
-        setId(id);
+    public TenantId(final TenantId tenantId) throws RecipeCreationException {
+        throwExecptionIfNull(tenantId, "tenantId");
+        this.id = tenantId.getId();
+    }
+
+    public TenantId(final UUID tenantId) throws RecipeCreationException {
+        throwExecptionIfNull(tenantId, "tenantId");
+        this.id = tenantId;
     }
 }

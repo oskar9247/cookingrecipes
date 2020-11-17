@@ -1,18 +1,18 @@
 package org.gombert.cooking.recipe.application.dto;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
 @Getter(AccessLevel.PUBLIC)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class CreateRecipeIngredientDTO
 {
-    @NonNull
+    public CreateRecipeIngredientDTO(){}
+
     private String ingredient;
-
-    @NonNull
     private Double amount;
-
-    @NonNull
     private String unit;
 }

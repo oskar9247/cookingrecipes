@@ -1,45 +1,38 @@
 package org.gombert.cooking.recipe.domain.port.in;
 
-import java.util.*;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import org.gombert.cooking.recipe.domain.model.RecipeId;
+import org.gombert.cooking.recipe.domain.model.TenantId;
 
-import lombok.*;
-import org.gombert.cooking.recipe.domain.model.*;
+import java.util.List;
+import java.util.UUID;
 
 public interface CreateRecipeUseCase
 {
-    RecipeId createRecipe(final CreateRecipeCommand createRecipeCommand);
+    void createRecipe(final TenantId tenandId, final CreateRecipeCommand createRecipeCommand);
 
     @Getter
-    @RequiredArgsConstructor
-    class CreateRecipeCommand
+    @AllArgsConstructor
+    @EqualsAndHashCode
+    public class CreateRecipeCommand
     {
-        @NonNull
-        private UUID clientGeneratedId;
-        @NonNull
-        private TenantId tenantId;
-        @NonNull
+        private RecipeId clientGeneratedId;
         private String name;
-        @NonNull
         private String description;
-        @NonNull
         private String comment;
-        @NonNull
         private List<CreateRecipeIngredientCommand> recipeIngredients;
-        @NonNull
         private List<String> methodSteps;
     }
 
     @Getter
-    @RequiredArgsConstructor
+    @AllArgsConstructor
+    @EqualsAndHashCode
     class CreateRecipeIngredientCommand
     {
-        @NonNull
         private String ingredient;
-
-        @NonNull
         private double amount;
-
-        @NonNull
         private String unit;
     }
 }
