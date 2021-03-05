@@ -1,4 +1,4 @@
-package org.gombert.cooking.recipe;
+package org.gombert.cooking;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

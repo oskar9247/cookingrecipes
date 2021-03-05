@@ -1,13 +1,11 @@
 package org.gombert.cooking.recipe.domain.model;
 
-import lombok.AccessLevel;
-import lombok.EqualsAndHashCode;
-import lombok.Setter;
-import org.gombert.cooking.recipe.domain.model.exception.RecipeCreationException;
-
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
+
+import lombok.*;
+import org.gombert.cooking.recipe.domain.model.exception.RecipeCreationException;
+import org.gombert.cooking.tenant.domain.model.TenantId;
 
 @Setter(AccessLevel.PRIVATE)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)

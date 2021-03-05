@@ -1,13 +1,10 @@
 package org.gombert.cooking.recipe.domain.port.in;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import org.gombert.cooking.recipe.domain.model.RecipeId;
-import org.gombert.cooking.recipe.domain.model.TenantId;
-
 import java.util.List;
-import java.util.UUID;
+
+import lombok.*;
+import org.gombert.cooking.recipe.domain.model.RecipeId;
+import org.gombert.cooking.tenant.domain.model.TenantId;
 
 public interface CreateRecipeUseCase
 {

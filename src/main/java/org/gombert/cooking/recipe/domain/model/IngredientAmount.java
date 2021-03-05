@@ -1,9 +1,6 @@
 package org.gombert.cooking.recipe.domain.model;
 
-import lombok.AccessLevel;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter(AccessLevel.MODULE)
 @Setter(AccessLevel.PRIVATE)

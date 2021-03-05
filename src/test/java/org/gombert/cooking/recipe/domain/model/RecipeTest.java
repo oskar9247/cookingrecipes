@@ -1,12 +1,11 @@
 package org.gombert.cooking.recipe.domain.model;
 
-import org.gombert.cooking.recipe.domain.model.exception.RecipeCreationException;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
+
+import org.gombert.cooking.recipe.domain.model.exception.RecipeCreationException;
+import org.gombert.cooking.tenant.domain.model.TenantId;
+import org.junit.jupiter.api.*;
 
 class RecipeTest
 {

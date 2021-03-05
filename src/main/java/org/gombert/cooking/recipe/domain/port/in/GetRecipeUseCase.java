@@ -1,9 +1,8 @@
 package org.gombert.cooking.recipe.domain.port.in;
 
-import org.gombert.cooking.recipe.domain.model.Recipe;
-import org.gombert.cooking.recipe.domain.model.RecipeId;
-import org.gombert.cooking.recipe.domain.model.TenantId;
+import org.gombert.cooking.recipe.domain.model.*;
 import org.gombert.cooking.recipe.domain.model.exception.RecipeNotFoundException;
+import org.gombert.cooking.tenant.domain.model.TenantId;
 
 public interface GetRecipeUseCase
 {
