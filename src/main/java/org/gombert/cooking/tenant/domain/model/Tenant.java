@@ -24,4 +24,9 @@ public class Tenant
     {
         return this.status.isActive();
     }
+
+    public void deactivate()
+    {
+        this.status.deactivate();
+    }
 }

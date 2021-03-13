@@ -4,7 +4,7 @@ import java.util.UUID;
 import java.util.stream.*;
 
 import org.gombert.cooking.recipe.domain.model.exception.RecipeCreationException;
-import org.gombert.cooking.recipe.domain.port.in.CreateRecipeUseCase;
+import org.gombert.cooking.recipe.application.port.in.CreateRecipeUseCase;
 import org.gombert.cooking.tenant.domain.model.TenantId;
 import org.junit.jupiter.api.*;
 

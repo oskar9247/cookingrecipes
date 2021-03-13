@@ -6,6 +6,7 @@ class Status
 {
     LocalDateTime activeSince;
     LocalDateTime activeUntil;
+    boolean deactivated = false;
 
     Status(LocalDateTime activeSince, LocalDateTime activeUntil)
     {
@@ -13,8 +14,19 @@ class Status
         this.activeUntil = activeUntil;
     }
 
+    void deactivate()
+    {
+       this.deactivated = true;
+    }
+
+    void activate(LocalDateTime activeUntil)
+    {
+        this.deactivated = false;
+        this.activeUntil = activeUntil;
+    }
+
     boolean isActive()
     {
-        return true;
+        return  activeUntil.isAfter(LocalDateTime.now());
     }
 }

@@ -3,8 +3,10 @@ package org.gombert.cooking.recipe.domain.model;
 import java.util.*;
 import java.util.stream.*;
 
+import org.gombert.cooking.recipe.adapter.out.persistence.*;
+import org.gombert.cooking.recipe.application.port.out.GetRecipePort;
 import org.gombert.cooking.recipe.domain.model.exception.RecipeCreationException;
-import org.gombert.cooking.recipe.domain.port.in.CreateRecipeUseCase;
+import org.gombert.cooking.recipe.application.port.in.CreateRecipeUseCase;
 import org.gombert.cooking.tenant.domain.model.TenantId;
 
 public class RecipeFactory
@@ -19,6 +21,18 @@ public class RecipeFactory
         final var recipeIngredients = convertRecipeIngredientsFromDtoOrEmptyList(createRecipeCommand.getRecipeIngredients());
 
         final var recipe = new Recipe(tenantId, clientGeneratedRecipeId, recipeInfo, recipeIngredients, methodSteps);
+        return recipe;
+    }
+
+    public static Recipe reconstitueRecipe(final RecipeJPAEntity recipeJPAEntity) throws RecipeCreationException {
+        if (recipeJPAEntity == null)
+            throw new RecipeCreationException("createRecipeCommand is null");
+
+        final var recipeInfo = new Info(recipeJPAEntity.getName(), recipeJPAEntity.getDescription(), recipeJPAEntity.getComment());
+        final var methodSteps = convertMethodStepsFromDto(recipeJPAEntity.getMethods());
+        final var recipeIngredients = convertRecipeIngredientsFromRepositoryOrEmptyList(recipeJPAEntity.getRecipeIngredients());
+
+        final var recipe = new Recipe(new TenantId(recipeJPAEntity.getTenantId()), new RecipeId(recipeJPAEntity.getRecipeId()), recipeInfo, recipeIngredients, methodSteps);
         return recipe;
     }
 
@@ -45,5 +59,19 @@ public class RecipeFactory
             recipeIngredients.add(recipeIngredient);
         }
         return recipeIngredients;
+    }
+
+    private static List<RecipeIngredient> convertRecipeIngredientsFromRepositoryOrEmptyList(final List<RecipeIngredientJPAEntity> recipeIngredientJPAEntities) throws RecipeCreationException
+    {
+        final var reconstitutedRecipeIngredients = new ArrayList<RecipeIngredient>();
+        if (recipeIngredientJPAEntities == null)
+            return reconstitutedRecipeIngredients;
+
+        for (final var recipeIngredient : recipeIngredientJPAEntities)
+        {
+            final var reconstitutedRecipeIngredient = new RecipeIngredient(recipeIngredient.getName(), recipeIngredient.getAmount(), recipeIngredient.getUnit());
+            reconstitutedRecipeIngredients.add(reconstitutedRecipeIngredient);
+        }
+        return reconstitutedRecipeIngredients;
     }
 }

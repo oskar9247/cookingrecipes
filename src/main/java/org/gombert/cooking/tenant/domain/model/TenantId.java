@@ -12,9 +12,9 @@ public class TenantId
     @Getter(AccessLevel.PUBLIC)
     private UUID id;
 
-    TenantId(final String tenantId)
+    public TenantId(final String tenantId)
     {
-        this.id = UUID.fromString(tenantId);
+        this(UUID.fromString(tenantId));
     }
 
     public TenantId(final TenantId tenantId) {
