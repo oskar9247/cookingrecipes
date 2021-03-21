@@ -2,6 +2,7 @@ package org.gombert.cooking.recipe.adapter.in.web;
 
 import java.util.UUID;
 
+import lombok.AllArgsConstructor;
 import org.gombert.cooking.recipe.domain.model.exception.*;
 import org.gombert.cooking.recipe.application.port.in.CreateRecipeUseCase;
 import org.gombert.cooking.tenant.domain.model.TenantId;
@@ -12,14 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@AllArgsConstructor
 class CreateRecipeController
 {
     private final CreateRecipeUseCase createRecipeUseCase;
-
-    CreateRecipeController(@Autowired final CreateRecipeUseCase createRecipeUseCase)
-    {
-        this.createRecipeUseCase = createRecipeUseCase;
-    }
 
     @PostMapping(path = "/v1/cookingrecipe/{tenantId}/recipes/")
     @ResponseStatus(value = HttpStatus.OK)

@@ -2,6 +2,7 @@ package org.gombert.cooking.recipe.adapter.in.web;
 
 import java.util.UUID;
 
+import lombok.AllArgsConstructor;
 import org.gombert.cooking.recipe.domain.model.RecipeId;
 import org.gombert.cooking.recipe.domain.model.exception.*;
 import org.gombert.cooking.recipe.application.port.in.GetRecipeUseCase;
@@ -13,14 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@AllArgsConstructor
 class GetRecipeController
 {
     private final GetRecipeUseCase getRecipeUseCase;
-
-    GetRecipeController(@Autowired final GetRecipeUseCase getRecipeUseCase)
-    {
-        this.getRecipeUseCase = getRecipeUseCase;
-    }
 
     @GetMapping(path = "/v1/cookingrecipe/{tenantId}/recipes/{recipeId}/")
     public ResponseEntity<RecipeDTO> getRecipe(@PathVariable("tenantId") UUID tenantId, @PathVariable("recipeId") UUID recipeId) throws RecipeNotFoundException

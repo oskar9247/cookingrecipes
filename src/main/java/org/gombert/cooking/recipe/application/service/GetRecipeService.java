@@ -1,5 +1,6 @@
 package org.gombert.cooking.recipe.application.service;
 
+import lombok.AllArgsConstructor;
 import org.gombert.cooking.recipe.application.port.out.GetRecipePort;
 import org.gombert.cooking.recipe.domain.model.*;
 import org.gombert.cooking.recipe.domain.model.exception.*;
@@ -11,20 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@AllArgsConstructor
 class GetRecipeService implements GetRecipeUseCase
 {
     private final GetRecipePort getRecipePort;
     private final IsTenantActiveUseCase isTenantActiveUseCase;
-
-    GetRecipeService(
-            @Autowired GetRecipePort getRecipePort, @Autowired IsTenantActiveUseCase isTenantActiveUseCase)
-            throws RecipeRepositoryNotFound {
-        if (getRecipePort == null)
-            throw new RecipeRepositoryNotFound("RecipeRepository is null");
-
-        this.getRecipePort = getRecipePort;
-        this.isTenantActiveUseCase = isTenantActiveUseCase;
-    }
 
     @Override
     public Recipe getRecipe(final TenantId tenantId, final RecipeId recipeId) throws RecipeNotFoundException

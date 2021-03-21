@@ -1,5 +1,6 @@
 package org.gombert.cooking.recipe.application.service;
 
+import lombok.AllArgsConstructor;
 import org.gombert.cooking.recipe.application.port.out.CreateRecipePort;
 import org.gombert.cooking.recipe.domain.model.*;
 import org.gombert.cooking.recipe.domain.model.exception.*;
@@ -12,21 +13,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@AllArgsConstructor
 class CreateRecipeService implements CreateRecipeUseCase
 {
     private final CreateRecipePort createRecipePort;
     private final IsTenantActiveUseCase isTenantActiveUseCase;
-
-    CreateRecipeService(
-            @Autowired CreateRecipePort createRecipePort,
-            @Autowired IsTenantActiveUseCase isTenantActiveUseCase
-    ) throws RecipeRepositoryNotFound {
-        if (createRecipePort == null)
-            throw new RecipeRepositoryNotFound("RecipeRepository is null");
-
-        this.createRecipePort = createRecipePort;
-        this.isTenantActiveUseCase = isTenantActiveUseCase;
-    }
 
     @Override
     @Transactional
