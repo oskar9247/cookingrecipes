@@ -1,9 +1,13 @@
 package learningtests.streams;
 
-import java.util.*;
-import java.util.stream.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import org.junit.jupiter.api.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 public class StreamsTest

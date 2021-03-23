@@ -1,28 +1,28 @@
 package org.gombert.cooking.recipe.adapter.in.web;
 
-import java.util.UUID;
-import java.util.stream.*;
-
-import org.gombert.cooking.recipe.application.port.in.*;
-import org.gombert.cooking.recipe.domain.model.*;
+import org.gombert.cooking.recipe.application.port.in.CreateRecipeUseCase;
+import org.gombert.cooking.recipe.application.port.in.GetRecipeUseCase;
+import org.gombert.cooking.recipe.domain.model.RecipeFactory;
+import org.gombert.cooking.recipe.domain.model.RecipeId;
 import org.gombert.cooking.recipe.domain.model.exception.RecipeNotFoundException;
 import org.gombert.cooking.tenant.domain.model.TenantId;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest
-@AutoConfigureMockMvc
+@WebMvcTest(controllers = GetRecipeController.class)
 class GetRecipeControllerTest
 {
     @Autowired
@@ -42,7 +42,7 @@ class GetRecipeControllerTest
         final var createRecipeCommand = new CreateRecipeUseCase.CreateRecipeCommand(recipeId, "RecipeName", "RecipeDesctiption", "RecipeComment", ingredients, methods);
         final var recipe = RecipeFactory.createRecipe(tenantId, createRecipeCommand);
         Mockito.when(mockedGetRecipeUseCase.getRecipe(any(TenantId.class), any(RecipeId.class))).thenReturn(recipe);
-        mockMvc.perform(get("/v1/cookingrecipe/d45768c7-4efe-49fa-b0b9-d8382f90f593/recipes/6f651a72-698c-4892-bd7b-8e553e6acfdc")
+        mockMvc.perform(get("/v1/cookingrecipe/d45768c7-4efe-49fa-b0b9-d8382f90f593/recipes/6f651a72-698c-4892-bd7b-8e553e6acfdc/")
                 .contentType("application/json"))
                 .andExpect(status().isOk())
                 .andExpect(content().json(
@@ -67,7 +67,7 @@ class GetRecipeControllerTest
         final var createRecipeCommand = new CreateRecipeUseCase.CreateRecipeCommand(recipeId, "RecipeName@", "RecipeDesctiptionâ€™™", "RecipeComment", ingredients, methods);
         final var recipe = RecipeFactory.createRecipe(tenantId, createRecipeCommand);
         Mockito.when(mockedGetRecipeUseCase.getRecipe(any(TenantId.class), any(RecipeId.class))).thenReturn(recipe);
-        mockMvc.perform(get("/v1/cookingrecipe/d45768c7-4efe-49fa-b0b9-d8382f90f593/recipes/6f651a72-698c-4892-bd7b-8e553e6acfdc")
+        mockMvc.perform(get("/v1/cookingrecipe/d45768c7-4efe-49fa-b0b9-d8382f90f593/recipes/6f651a72-698c-4892-bd7b-8e553e6acfdc/")
                 .contentType("application/json"))
                 .andExpect(status().isOk())
                 .andExpect(content().json(
@@ -87,7 +87,7 @@ class GetRecipeControllerTest
     @Test
     public void givenNotValidTenantId_whenGetRecipe_thenReturnBadRequest400() throws Exception
     {
-        mockMvc.perform(get("/v1/cookingrecipe/blaTenanId/recipes/6f651a72-698c-4892-bd7b-8e553e6acfdc")
+        mockMvc.perform(get("/v1/cookingrecipe/blaTenanId/recipes/6f651a72-698c-4892-bd7b-8e553e6acfdc/")
                 .contentType("application/json"))
                 .andExpect(status().isBadRequest());
     }
@@ -95,7 +95,7 @@ class GetRecipeControllerTest
     @Test
     public void givenNotValidRecipeId_whenGetRecipe_thenReturnBadRequest400() throws Exception
     {
-        mockMvc.perform(get("/v1/cookingrecipe/d45768c7-4efe-49fa-b0b9-d8382f90f593/recipes/blaRecipeId")
+        mockMvc.perform(get("/v1/cookingrecipe/d45768c7-4efe-49fa-b0b9-d8382f90f593/recipes/blaRecipeId/")
                 .contentType("application/json"))
                 .andExpect(status().isBadRequest());
     }
@@ -104,7 +104,7 @@ class GetRecipeControllerTest
     public void givenUnknownRecipeId_whenGetRecipe_thenReturnBadRequest400() throws Exception
     {
         Mockito.when(mockedGetRecipeUseCase.getRecipe(any(TenantId.class), any(RecipeId.class))).thenThrow(new RecipeNotFoundException(""));
-        mockMvc.perform(get("/v1/cookingrecipe/d45768c7-4efe-49fa-b0b9-d8382f90f593/recipes/6f651a72-698c-4892-bd7b-8e553e6acfdc")
+        mockMvc.perform(get("/v1/cookingrecipe/d45768c7-4efe-49fa-b0b9-d8382f90f593/recipes/6f651a72-698c-4892-bd7b-8e553e6acfdc/")
                 .contentType("application/json"))
                 .andExpect(status().isNotFound());
     }
@@ -113,7 +113,7 @@ class GetRecipeControllerTest
     public void givenUnknownTenandId_whenGetRecipe_thenReturnBadRequest400() throws Exception
     {
         Mockito.when(mockedGetRecipeUseCase.getRecipe(any(TenantId.class), any(RecipeId.class))).thenThrow(new RecipeNotFoundException(""));
-        mockMvc.perform(get("/v1/cookingrecipe/d45768c7-4efe-49fa-b0b9-d8382f90f593/recipes/6f651a72-698c-4892-bd7b-8e553e6acfdc")
+        mockMvc.perform(get("/v1/cookingrecipe/d45768c7-4efe-49fa-b0b9-d8382f90f593/recipes/6f651a72-698c-4892-bd7b-8e553e6acfdc/")
                 .contentType("application/json"))
                 .andExpect(status().isNotFound());
     }

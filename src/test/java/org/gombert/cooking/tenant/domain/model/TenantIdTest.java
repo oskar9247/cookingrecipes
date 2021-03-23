@@ -1,8 +1,9 @@
 package org.gombert.cooking.tenant.domain.model;
 
-import java.util.UUID;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import org.junit.jupiter.api.*;
+import java.util.UUID;
 
 class TenantIdTest
 {
