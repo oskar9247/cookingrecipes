@@ -1,17 +1,20 @@
 package org.gombert.cooking.recipe.adapter.in.web;
 
-import java.util.UUID;
-
 import lombok.AllArgsConstructor;
-import org.gombert.cooking.recipe.domain.model.RecipeId;
-import org.gombert.cooking.recipe.domain.model.exception.*;
 import org.gombert.cooking.recipe.application.port.in.GetRecipeUseCase;
+import org.gombert.cooking.recipe.domain.model.RecipeId;
+import org.gombert.cooking.recipe.domain.model.exception.RecipeNotFoundException;
 import org.gombert.cooking.tenant.domain.model.TenantId;
-import org.gombert.cooking.tenant.domain.model.exception.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
+import org.gombert.cooking.tenant.domain.model.exception.TenantNotActiveException;
+import org.gombert.cooking.tenant.domain.model.exception.TenantNotFoundException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.UUID;
 
 @Controller
 @AllArgsConstructor

@@ -1,9 +1,7 @@
 package org.gombert.cooking.recipe.adapter.in.web;
 
 import lombok.AllArgsConstructor;
-import org.gombert.cooking.recipe.application.port.in.GetRecipeUseCase;
 import org.gombert.cooking.recipe.application.port.in.GetRecipesByIngredientUseCase;
-import org.gombert.cooking.recipe.domain.model.RecipeId;
 import org.gombert.cooking.recipe.domain.model.exception.RecipeNotFoundException;
 import org.gombert.cooking.tenant.domain.model.TenantId;
 import org.gombert.cooking.tenant.domain.model.exception.TenantNotActiveException;

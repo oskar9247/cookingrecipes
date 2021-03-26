@@ -1,8 +1,11 @@
 package org.gombert.cooking.recipe.adapter.out.persistence;
 
-import javax.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-import lombok.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "recipe_ingredient")

@@ -1,8 +1,12 @@
 package org.gombert.cooking.recipe.adapter.in.web;
 
-import java.util.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
-import lombok.*;
+import java.util.List;
+import java.util.UUID;
 
 @Getter(AccessLevel.PUBLIC)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)

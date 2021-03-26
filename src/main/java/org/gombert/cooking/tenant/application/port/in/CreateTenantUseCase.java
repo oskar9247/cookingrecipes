@@ -1,9 +1,11 @@
 package org.gombert.cooking.tenant.application.port.in;
 
-import java.time.LocalDateTime;
-
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import org.gombert.cooking.tenant.domain.model.TenantId;
+
+import java.time.LocalDateTime;
 
 public interface CreateTenantUseCase
 {

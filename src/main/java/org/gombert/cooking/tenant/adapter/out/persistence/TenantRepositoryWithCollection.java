@@ -1,11 +1,12 @@
 package org.gombert.cooking.tenant.adapter.out.persistence;
 
-import java.util.HashSet;
-
-import org.gombert.cooking.tenant.domain.model.*;
-import org.gombert.cooking.tenant.domain.model.exception.TenantNotFoundException;
 import org.gombert.cooking.tenant.application.port.out.TenantRepository;
+import org.gombert.cooking.tenant.domain.model.Tenant;
+import org.gombert.cooking.tenant.domain.model.TenantId;
+import org.gombert.cooking.tenant.domain.model.exception.TenantNotFoundException;
 import org.springframework.stereotype.Repository;
+
+import java.util.HashSet;
 
 @Repository
 public class TenantRepositoryWithCollection implements TenantRepository

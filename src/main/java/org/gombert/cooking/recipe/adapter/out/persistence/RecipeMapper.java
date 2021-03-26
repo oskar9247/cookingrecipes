@@ -1,10 +1,12 @@
 package org.gombert.cooking.recipe.adapter.out.persistence;
 
-import java.util.*;
-import java.util.stream.Collectors;
-
-import org.gombert.cooking.recipe.domain.model.*;
+import org.gombert.cooking.recipe.domain.model.Recipe;
+import org.gombert.cooking.recipe.domain.model.RecipeFactory;
+import org.gombert.cooking.recipe.domain.model.RecipeIngredient;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 class RecipeMapper

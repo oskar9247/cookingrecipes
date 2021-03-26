@@ -1,9 +1,12 @@
 package org.gombert.cooking.tenant.domain.model;
 
-import java.util.UUID;
-
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 import org.gombert.cooking.recipe.domain.model.exception.RecipeCreationException;
+
+import java.util.UUID;
 
 @ToString(callSuper = false)
 @EqualsAndHashCode()

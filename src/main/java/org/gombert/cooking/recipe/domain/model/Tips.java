@@ -1,6 +1,9 @@
 package org.gombert.cooking.recipe.domain.model;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NonNull;
 
 @EqualsAndHashCode
 class Tips extends BaseEntity

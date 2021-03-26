@@ -1,10 +1,12 @@
 package org.gombert.cooking.recipe.adapter.in.web;
 
-import java.util.*;
-import java.util.stream.*;
-
-import org.gombert.cooking.recipe.domain.model.RecipeId;
 import org.gombert.cooking.recipe.application.port.in.CreateRecipeUseCase;
+import org.gombert.cooking.recipe.domain.model.RecipeId;
+
+import java.util.Collection;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 class CreateRecipeCommandMapper
 {

@@ -1,9 +1,12 @@
 package org.gombert.cooking.tenant.adapter.in.web;
 
-import java.time.LocalDateTime;
-
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import org.gombert.cooking.tenant.domain.model.TenantId;
+
+import java.time.LocalDateTime;
 
 @Getter(AccessLevel.PUBLIC)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)

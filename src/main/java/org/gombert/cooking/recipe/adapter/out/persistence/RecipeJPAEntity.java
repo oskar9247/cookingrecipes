@@ -1,11 +1,13 @@
 package org.gombert.cooking.recipe.adapter.out.persistence;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.*;
-
-import lombok.*;
-import org.w3c.dom.stylesheets.LinkStyle;
+import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "recipe")
